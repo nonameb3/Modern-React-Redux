@@ -29,7 +29,6 @@ class SongList extends Component{
 
 // Map State(Redux) to this.Props
 const mapStateToProps = (state)=>{
-  console.log(state)
   return {songs: state.songs};
 };
 
