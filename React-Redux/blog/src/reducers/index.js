@@ -1,10 +1,8 @@
 import {combineReducers} from 'redux';
+import PostReducer from './postReducer';
+import UserReducer from './userReducer';
 
-export default combineReducers((state = null , action) =>{
-  switch (action.type) {
-    case 'FETCH_POSTS':
-      return action.payload;
-    default:
-      return state;
-  }
+export default combineReducers({
+  posts: PostReducer,
+  users: UserReducer
 });
