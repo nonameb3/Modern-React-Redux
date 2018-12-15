@@ -1,21 +1,20 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fecthUser } from '../actions';
 
 class UserDetail extends React.Component{
-  componentDidMount(){
-    this.props.fecthUser(this.props.userId);
-  }
-
   render(){
-    const user = this.props.users.find((users) => users.id === this.props.userId);
+    const user = this.props.user
     if(!user) return null;
-    return <div>{user.name}</div>;
-  }
+    return (
+    <div className="header">
+      {user.name}
+    </div>
+    );
+  };
 }
 
-const MapStatetoProps = (State) => {
-  return {users : State.users}
+const MapStatetoProps = (State, ThisProps) => {
+  return {user: State.users.find(user => user.id === ThisProps.userId) };
 }
 
-export default connect(MapStatetoProps,{ fecthUser })(UserDetail);
+export default connect(MapStatetoProps)(UserDetail);
