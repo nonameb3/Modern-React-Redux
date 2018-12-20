@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Field, reduxForm} from 'redux-form';
+import { connect} from 'react-redux';
+import { createStream} from '../../actions'
 
 export class streamCreate extends Component {
   renderError = ({error, touched}) => {
@@ -12,26 +14,26 @@ export class streamCreate extends Component {
     };
   }
 
-  rederinput(formProps) {
+  rederinput = (formProps) => {
     const css = `field ${formProps.meta.error&&formProps.meta.touched ?'error':''}` ;
     return (
       <div className={css}>
         <label>{formProps.label}</label>
-        <input {...formProps.input} autoComplete="off"/>
+        <input {...formProps.input} autoComplete="off" type="text"/>
         {this.renderError(formProps.meta)}
       </div>
     );
   }
 
-  submit(formValue){
-    console.log(formValue);
+  submit = (formValue) => {
+    this.props.createStream(formValue);
   }
 
   render() {
     return (
       <form className="ui form error" onSubmit={this.props.handleSubmit(this.submit)}>
-        <Field name="title" component={this.rederinput.bind(this)} label="Enter Title"/>
-        <Field name="description" component={this.rederinput.bind(this)} label="Enter Description"/>
+        <Field name="title" component={this.rederinput} label="Enter Title"/>
+        <Field name="description" component={this.rederinput} label="Enter Description"/>
         <button className="ui button primary">Submmit</button>
       </form>
     )
@@ -50,7 +52,9 @@ const validate = formValue => {
   return error;
 }
 
-export default reduxForm({
+const formWrapped = reduxForm({
   form:'steamCreate',
   validate: validate
 })(streamCreate);
+
+export default connect(null,{createStream})(formWrapped);
