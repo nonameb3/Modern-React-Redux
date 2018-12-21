@@ -17,8 +17,9 @@ export const SignOut = () => {
 };
 
 // API POST action
-export const createStream = formValue => async dispatch => {
-  const respone = await steams.post('/streams', formValue);
+export const createStream = formValue => async (dispatch, getState) => {
+  const {userId} = getState().auth;
+  const respone = await steams.post('/streams', {...formValue, userId});
 
   dispatch({
     type: Types.CREATE_STREAM,
