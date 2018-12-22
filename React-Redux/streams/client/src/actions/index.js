@@ -1,5 +1,6 @@
 import * as Types from './types';
 import steams from '../apis/streams';
+import history from '../history';
 
 // Sign In action
 export const SignIn = userId => {
@@ -25,6 +26,8 @@ export const createStream = formValue => async (dispatch, getState) => {
     type: Types.CREATE_STREAM,
     payload: respone.data
   })
+
+  history.push('/');
 };
 
 // API GET List action
