@@ -17,7 +17,7 @@ class App extends React.Component{
             <Header/>
             <Route path="/" exact component={streamList}/>
             <Route path="/streams/new" exact component={streamCreate}/>
-            <Route path="/streams/edit" exact component={streamEdit}/>
+            <Route path="/streams/edit/:id" exact component={streamEdit}/>
             <Route path="/streams/delete" exact component={streamDelete}/>
             <Route path="/streams/show" exact component={streamShow}/>
           </div>

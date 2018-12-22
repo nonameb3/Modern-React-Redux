@@ -8,14 +8,15 @@ export class streamList extends Component {
     this.props.listStreams();
   }
 
+  // render button for stream'owner
   renderAdmin = stream => {
     if (!this.props.currentUserId || !stream.userId) return;
     if (this.props.currentUserId === stream.userId){
       return (
         <div className="right floated content">
-          <button className="ui button primary">
+          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
             Edit
-          </button>
+          </Link>
           <button className="ui button negative">
             Delete
           </button>
@@ -24,6 +25,7 @@ export class streamList extends Component {
     };
   }
 
+  // render Link to create
   renderCreateLink = () => {
     if(this.props.isSignIn){
       return(
@@ -36,6 +38,7 @@ export class streamList extends Component {
     };
   }
 
+  // render all list
   renderList = () => {
     return this.props.streams.map((stream) => {
       return (

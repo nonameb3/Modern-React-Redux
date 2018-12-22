@@ -50,8 +50,8 @@ export const getStream = id => async dispatch => {
   })
 };
 
-// API UPDATE action
-export const updateStream = (id, formValue) => async dispatch => {
+// API EDIT action
+export const editStream = (id, formValue) => async dispatch => {
   const respone = await steams.update(`/streams/${id}`, formValue);
 
   dispatch({
