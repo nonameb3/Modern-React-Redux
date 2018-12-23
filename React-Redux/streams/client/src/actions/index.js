@@ -50,14 +50,20 @@ export const getStream = id => async dispatch => {
   })
 };
 
-// API EDIT action
+// API PATCH action
 export const editStream = (id, formValue) => async dispatch => {
-  const respone = await steams.update(`/streams/${id}`, formValue);
+  // update all properties
+  // const respone = await steams.put(`/streams/${id}`, formValue);
+
+  // update some properties
+  const respone = await steams.patch(`/streams/${id}`, formValue);
 
   dispatch({
     type: Types.UPDATE_STREAM,
     payload: respone.data
   })
+
+  history.push('/');
 };
 
 // API DELETE action
