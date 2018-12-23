@@ -17,12 +17,12 @@ export class streamList extends Component {
           <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
             Edit
           </Link>
-          <button className="ui button negative">
+          <Link to={`/streams/delete/${stream.id}`} className="ui button negative">
             Delete
-          </button>
+          </Link>
         </div>
       );
-    };
+    }
   }
 
   // render Link to create
@@ -35,7 +35,7 @@ export class streamList extends Component {
           </Link>
         </div>
       );
-    };
+    }
   }
 
   // render all list
@@ -72,7 +72,7 @@ const mapStatetoProps = state => {
     streams: Object.values(state.streams),
     currentUserId: state.auth.userId,
     isSignIn: state.auth.isSignIn
-  }
-}
+  };
+};
 
 export default connect(mapStatetoProps, {listStreams})(streamList);

@@ -25,7 +25,7 @@ export const createStream = formValue => async (dispatch, getState) => {
   dispatch({
     type: Types.CREATE_STREAM,
     payload: respone.data
-  })
+  });
 
   history.push('/');
 };
@@ -37,7 +37,7 @@ export const listStreams = () => async dispatch => {
   dispatch({
     type: Types.LIST_STREAMS,
     payload: respone.data
-  })
+  });
 };
 
 // API GET action
@@ -47,7 +47,7 @@ export const getStream = id => async dispatch => {
   dispatch({
     type: Types.GET_STREAM,
     payload: respone.data
-  })
+  });
 };
 
 // API PATCH action
@@ -61,7 +61,7 @@ export const editStream = (id, formValue) => async dispatch => {
   dispatch({
     type: Types.UPDATE_STREAM,
     payload: respone.data
-  })
+  });
 
   history.push('/');
 };
@@ -71,7 +71,9 @@ export const deleteStream = id => async dispatch => {
   await steams.delete(`/streams/${id}`);
 
   dispatch({
-    type: Types.UPDATE_STREAM,
+    type: Types.DELETE_STREAM,
     payload: id
-  })
+  });
+
+  history.push('/');
 };
