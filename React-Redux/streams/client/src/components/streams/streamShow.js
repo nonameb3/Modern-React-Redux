@@ -12,6 +12,23 @@ export class streamShow extends Component {
   componentDidMount(){
     const {id} = this.props.match.params;
     this.props.getStream(id);
+    this.buildPlayer();
+  }
+
+  componentDidUpdate(){
+    this.buildPlayer();
+  }
+
+  componentWillUnmount(){
+    this.player.destroy();
+  }
+
+  buildPlayer = () => {
+    if(this.player || !this.props.stream){
+      return;
+    }
+
+    const {id} = this.props.match.params;
     this.player = flv.createPlayer({
       type: 'flv',
       url: `http://localhost:8000/live/${id}.flv`
@@ -39,6 +56,6 @@ export class streamShow extends Component {
 
 const mapStatetoProps = (state, thisProps) => {
   return {stream: state.streams[thisProps.match.params.id]};
-}
+};
 
 export default connect(mapStatetoProps,{getStream})(streamShow);
