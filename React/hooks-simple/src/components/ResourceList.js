@@ -1,30 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import UseResource from './UseResource';
 
-// use useState, useEddect Hooks
 const ResourceList = ({resource}) => {
-  // set state
-  const [resources, setResource] = useState([]);
-
-  const fectResource = async (resource) => {
-    const response = await axios.get(`https://jsonplaceholder.typicode.com/${resource}`);
-    setResource(response.data);
-  };
-  
-  // same as componentDidMount , Update
-  useEffect(
-    ()=>{
-      fectResource(resource);
-    },[resource] // only run when userId changed
-  );
-
+  const resources = UseResource(resource);
 
   return (
     <div>
-      {resources.length}
+      {resources.map(list => <li key={list.id}>{list.title}</li>)}
     </div>
   );
-  
 };
 
 export default ResourceList;
